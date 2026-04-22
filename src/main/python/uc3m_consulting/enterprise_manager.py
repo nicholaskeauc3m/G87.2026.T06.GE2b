@@ -40,3 +40,5 @@ class EnterpriseManager:
         ext = "." + filename.split(".")[1] if "." in filename else ""
         if ext not in (".pdf", ".docx", ".xlsx"):
             raise EnterpriseManagementException("Invalid FILENAME")
+        if not re.match(r'^[a-zA-Z0-9]+$', name):
+            raise EnterpriseManagementException("Invalid FILENAME")
