@@ -10,3 +10,7 @@ class EnterpriseManager:
         """RETURNs TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
         OR FALSE IN OTHER CASE"""
         return True
+
+    def register_document(self, input_file: str):
+        """Registers a document for a project"""
+    pass
