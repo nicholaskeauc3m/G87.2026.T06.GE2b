@@ -1,4 +1,12 @@
 """Module """
+import hashlib
+import json
+import os
+import re
+from datetime import datetime
+from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
+from uc3m_consulting.enterprise_project import EnterpriseProject
+from uc3m_consulting.project_document import ProjectDocument
 
 class EnterpriseManager:
     """Class for providing the methods for managing the orders"""
@@ -13,4 +21,5 @@ class EnterpriseManager:
 
     def register_document(self, input_file: str):
         """Registers a document for a project"""
-    pass
+        if not os.path.exists(input_file):
+            raise EnterpriseManagementException("Input file not found")
