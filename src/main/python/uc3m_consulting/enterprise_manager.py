@@ -26,3 +26,7 @@ class EnterpriseManager:
                 data = json.load(f)
         except json.JSONDecodeError as exc:
             raise EnterpriseManagementException("File is not valid JSON") from exc
+        if not isinstance(data, dict):
+            raise EnterpriseManagementException("JSON does not have expected structure")
+        if set(data.keys()) != {"PROJECT_ID", "FILENAME"}:
+            raise EnterpriseManagementException("JSON does not have expected structure")
