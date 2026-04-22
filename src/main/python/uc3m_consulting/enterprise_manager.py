@@ -30,3 +30,10 @@ class EnterpriseManager:
             raise EnterpriseManagementException("JSON does not have expected structure")
         if set(data.keys()) != {"PROJECT_ID", "FILENAME"}:
             raise EnterpriseManagementException("JSON does not have expected structure")
+        project_id = data["PROJECT_ID"]
+        if not re.match(r'^[0-9a-fA-F]{32}$', project_id):
+            raise EnterpriseManagementException("Invalid PROJECT_ID")
+        filename = data["FILENAME"]
+        name = filename.split(".")[0] if "." in filename else filename
+        if len(name) != 8:
+            raise EnterpriseManagementException("Invalid FILENAME")
