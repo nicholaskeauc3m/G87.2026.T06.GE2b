@@ -17,6 +17,8 @@ class TestRegisterDocument(unittest.TestCase):
         for f in ["mytest.json", "all_documents.json", "corporate_operations.json"]:
             if os.path.exists(f):
                 os.remove(f)
+        with open("corporate_operations.json", "w", encoding="utf-8") as f:
+            json.dump([{"project_id": self.valid_project_id}], f)
 
     def tearDown(self):
         """Clean up files after each test"""

@@ -42,3 +42,22 @@ class EnterpriseManager:
             raise EnterpriseManagementException("Invalid FILENAME")
         if not re.match(r'^[a-zA-Z0-9]+$', name):
             raise EnterpriseManagementException("Invalid FILENAME")
+        corp_file = "corporate_operations.json"
+        if not os.path.exists(corp_file):
+            raise EnterpriseManagementException("PROJECT_ID not registered")
+        with open(corp_file, "r", encoding="utf-8") as f:
+            projects = json.load(f)
+        registered_ids = [p["project_id"] for p in projects]
+        if project_id.lower() not in [pid.lower() for pid in registered_ids]:
+            raise EnterpriseManagementException("PROJECT_ID not registered")
+        doc = ProjectDocument(project_id, filename)
+        docs_file = "all_documents.json"
+        if os.path.exists(docs_file):
+            with open(docs_file, "r", encoding="utf-8") as f:
+                docs = json.load(f)
+        else:
+            docs = []
+        docs.append(doc.to_json())
+        with open(docs_file, "w", encoding="utf-8") as f:
+            json.dump(docs, f, indent=2)
+        return doc.document_signature
