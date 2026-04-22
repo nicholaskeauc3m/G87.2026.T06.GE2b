@@ -37,3 +37,6 @@ class EnterpriseManager:
         name = filename.split(".")[0] if "." in filename else filename
         if len(name) != 8:
             raise EnterpriseManagementException("Invalid FILENAME")
+        ext = "." + filename.split(".")[1] if "." in filename else ""
+        if ext not in (".pdf", ".docx", ".xlsx"):
+            raise EnterpriseManagementException("Invalid FILENAME")
