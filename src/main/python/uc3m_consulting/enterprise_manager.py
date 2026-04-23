@@ -3,7 +3,6 @@ import json
 import os
 import re
 from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
-from uc3m_consulting.enterprise_project import EnterpriseProject
 from uc3m_consulting.project_document import ProjectDocument
 
 
@@ -15,6 +14,7 @@ class EnterpriseManager:
     @staticmethod
     def validate_cif(cif: str):
         """Returns True if the CIF received is valid, False otherwise"""
+        _ = cif
         return True
 
     def register_document(self, input_file: str):
